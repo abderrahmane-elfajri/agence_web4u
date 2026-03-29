@@ -369,38 +369,72 @@ if (contactForm) {
     const button = contactForm.querySelector("button[type='submit']");
     if (!button) return;
 
-    const to = contactForm.dataset.mailto;
-    if (!to) return;
+    const serviceId = contactForm.dataset.emailjsService;
+    const templateId = contactForm.dataset.emailjsTemplate;
+    const publicKey = contactForm.dataset.emailjsPublic;
+
+    const hasConfig =
+      serviceId &&
+      templateId &&
+      publicKey &&
+      !serviceId.includes("YOUR_") &&
+      !templateId.includes("YOUR_") &&
+      !publicKey.includes("YOUR_");
 
     const currentLang = localStorage.getItem("aw4u_lang") || "en";
     const dict = translations[currentLang] || translations.en;
     const originalText = button.textContent;
+
+    if (window.location.protocol === "file:") {
+      button.textContent = "Use localhost or GitHub Pages";
+      button.disabled = true;
+      console.error("EmailJS blocked on file:// origin. Run the site via http(s), e.g. GitHub Pages or a local server.");
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.disabled = false;
+      }, 2600);
+      return;
+    }
+
     button.textContent = dict["form.sending"] || "Sending...";
     button.disabled = true;
 
     try {
-      const formData = new FormData(contactForm);
-      const selectedService = formData.get("service") || "General";
-
-      formData.append("_subject", `New Website Inquiry - ${selectedService}`);
-      formData.append("_captcha", "false");
-      formData.append("_template", "table");
-
-      const response = await fetch(`https://formsubmit.co/ajax/${to}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json"
-        },
-        body: formData
-      });
-
-      if (!response.ok) {
-        throw new Error("Form submit failed");
+      if (!window.emailjs || !hasConfig) {
+        throw new Error("EmailJS is not configured");
       }
+
+      if (!window.__aw4uEmailJsInitialized) {
+        window.emailjs.init({ publicKey });
+        window.__aw4uEmailJsInitialized = true;
+      }
+
+      const name = document.getElementById("name")?.value?.trim() || "";
+      const email = document.getElementById("email")?.value?.trim() || "";
+      const service = document.getElementById("service")?.value?.trim() || "General";
+      const message = document.getElementById("message")?.value?.trim() || "";
+
+      await window.emailjs.send(serviceId, templateId, {
+        name,
+        email,
+        service,
+        from_name: name,
+        from_email: email,
+        service_name: service,
+        message,
+        reply_to: email,
+        agency_name: "Agence Web4u",
+        phone: "0694360941",
+        to_email: "abderrahmanelfajri@gmail.com"
+      });
 
       button.textContent = dict["form.success"] || "Message sent successfully";
       contactForm.reset();
     } catch (error) {
+      console.error("EmailJS send error:", error);
+      if (error?.status || error?.text) {
+        console.error(`EmailJS details: status=${error.status || "n/a"}, text=${error.text || "n/a"}`);
+      }
       button.textContent = dict["form.error"] || "Failed to send. Try again.";
     }
 
