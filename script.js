@@ -362,7 +362,9 @@ if ("IntersectionObserver" in window) {
   revealElements.forEach((element) => element.classList.add("visible"));
 }
 
-if (contactForm) {
+function initContactForm() {
+  if (!contactForm) return;
+
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -400,8 +402,12 @@ if (contactForm) {
     button.disabled = true;
 
     try {
-      if (!window.emailjs || !hasConfig) {
-        throw new Error("EmailJS is not configured");
+      if (!window.emailjs) {
+        throw new Error("EmailJS library failed to load from CDN");
+      }
+
+      if (!hasConfig) {
+        throw new Error("EmailJS configuration missing in form data attributes");
       }
 
       if (!window.__aw4uEmailJsInitialized) {
@@ -444,3 +450,29 @@ if (contactForm) {
     }, 2200);
   });
 }
+
+function waitForEmailJS() {
+  if (window.emailjs) {
+    console.log("EmailJS loaded successfully");
+    initContactForm();
+    return;
+  }
+
+  const maxRetries = 50;
+  let retries = 0;
+
+  const checkInterval = setInterval(() => {
+    retries++;
+    if (window.emailjs) {
+      console.log("EmailJS library detected");
+      clearInterval(checkInterval);
+      initContactForm();
+    } else if (retries >= maxRetries) {
+      console.warn("EmailJS library did not load within timeout. Check your internet connection or CDN status.");
+      clearInterval(checkInterval);
+      initContactForm();
+    }
+  }, 100);
+}
+
+waitForEmailJS();
