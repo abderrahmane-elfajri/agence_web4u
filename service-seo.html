@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ads Management | Agence Web4u</title>
+    <meta
+      name="description"
+      content="Ads management service by Agence Web4u focused on measurable ROI, lead quality, and campaign scaling."
+    />
+    <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="service-page">
+    <header class="site-header">
+      <nav class="nav container">
+        <a href="index.html#home" class="brand" aria-label="Agence Web4u home">
+          <img src="logo.jpeg" alt="Agence Web4u logo" width="42" height="42" />
+          <span>Agence Web4u</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#services" class="current" data-i18n="nav.services">Services</a></li>
+          <li><a href="index.html#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+          <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+          <li>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </li>
+          <li>
+            <select id="languageSelect" class="lang-select" aria-label="Choose language">
+              <option value="en">English</option>
+              <option value="fr">Francais</option>
+              <option value="ar">Arabic</option>
+            </select>
+          </li>
+          <li><a href="index.html#contact" class="btn btn-nav" data-i18n="cta.getStarted">Get Started</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="service-hero">
+        <div class="container service-layout">
+          <div class="service-panel reveal">
+            <p class="eyebrow" data-i18n="service.section">Service Details</p>
+            <h1 data-i18n="services.seo.title">Ads Management</h1>
+            <p data-i18n="services.seo.desc">End-to-end paid ads management focused on ROI, quality leads, and lower acquisition cost.</p>
+            <h3 data-i18n="service.detailsTitle">What You Get</h3>
+            <p data-i18n="service.detailsText">This service is delivered with strategy, speed, and conversion-focused execution.</p>
+            <ul class="feature-list">
+              <li><i class="fa-solid fa-circle-check"></i><span data-i18n="service.benefit1">Clear process from discovery to launch</span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span data-i18n="service.benefit2">Premium UI with mobile-first performance</span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span data-i18n="service.benefit3">Lead-oriented structure and CTA optimization</span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span data-i18n="service.benefit4">Ongoing support and measurable results</span></li>
+            </ul>
+            <div class="hero-cta">
+              <a href="index.html#contact" class="btn btn-primary" data-i18n="service.cta">Start This Service</a>
+              <a href="index.html" class="btn btn-outline" data-i18n="service.back">Back to Home</a>
+            </div>
+          </div>
+          <div class="service-image reveal">
+            <img
+              src="https://images.pexels.com/photos/15406293/pexels-photo-15406293.jpeg"
+              alt="SEO strategy mockup"
+              width="1200"
+              height="860"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p><span data-i18n="footer.rightsPrefix">©</span> <span id="year"></span> Agence Web4u. <span data-i18n="footer.rights">All rights reserved.</span></p>
+        <a href="index.html#home" data-i18n="footer.backTop">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
