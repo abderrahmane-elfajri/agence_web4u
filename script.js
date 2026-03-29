@@ -406,6 +406,12 @@ function initContactForm() {
         throw new Error("EmailJS configuration missing in form data attributes");
       }
 
+      console.log("EmailJS config in use:", {
+        serviceId,
+        templateId,
+        publicKey
+      });
+
       const name = document.getElementById("name")?.value?.trim() || "";
       const email = document.getElementById("email")?.value?.trim() || "";
       const service = document.getElementById("service")?.value?.trim() || "General";
@@ -470,7 +476,12 @@ function initContactForm() {
     } catch (error) {
       console.error("EmailJS send error:", error);
       if (String(error?.message || "").includes("template ID")) {
-        console.error("Configured template in HTML:", templateId);
+        console.error("Configured IDs in HTML:", {
+          serviceId,
+          templateId,
+          publicKey
+        });
+        console.error("EmailJS note: template, service, and public key must belong to the same EmailJS account.");
       }
       button.textContent = dict["form.error"] || "Failed to send. Try again.";
     }
