@@ -411,42 +411,67 @@ function initContactForm() {
       const service = document.getElementById("service")?.value?.trim() || "General";
       const message = document.getElementById("message")?.value?.trim() || "";
 
-      const payload = {
-        service_id: serviceId,
-        template_id: templateId,
-        user_id: publicKey,
-        template_params: {
-          name,
-          email,
-          service,
-          from_name: name,
-          from_email: email,
-          service_name: service,
-          message,
-          reply_to: email,
-          agency_name: "Agence Web4u",
-          phone: "0694360941",
-          to_email: "abderrahmanelfajri@gmail.com"
+      const templateIdsToTry = Array.from(
+        new Set([
+          templateId,
+          templateId.replace(/o/g, "0"),
+          templateId.replace(/0/g, "o")
+        ])
+      );
+
+      let sent = false;
+      let lastErrorDetails = "";
+
+      for (const currentTemplateId of templateIdsToTry) {
+        const payload = {
+          service_id: serviceId,
+          template_id: currentTemplateId,
+          user_id: publicKey,
+          template_params: {
+            name,
+            email,
+            service,
+            from_name: name,
+            from_email: email,
+            service_name: service,
+            message,
+            reply_to: email,
+            agency_name: "Agence Web4u",
+            phone: "0694360941",
+            to_email: "abderrahmanelfajri@gmail.com"
+          }
+        };
+
+        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          sent = true;
+          break;
         }
-      };
 
-      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (!response.ok) {
         const details = await response.text();
-        throw new Error(`EmailJS API error ${response.status}: ${details || "No details"}`);
+        lastErrorDetails = `EmailJS API error ${response.status}: ${details || "No details"}`;
+      }
+
+      if (!sent) {
+        throw new Error(
+          `${lastErrorDetails} | Tried template IDs: ${templateIdsToTry.join(", ")}. Update data-emailjs-template in index.html with a valid ID from EmailJS dashboard.`
+        );
       }
 
       button.textContent = dict["form.success"] || "Message sent successfully";
       contactForm.reset();
     } catch (error) {
       console.error("EmailJS send error:", error);
+      if (String(error?.message || "").includes("template ID")) {
+        console.error("Configured template in HTML:", templateId);
+      }
       button.textContent = dict["form.error"] || "Failed to send. Try again.";
     }
 
