@@ -402,17 +402,8 @@ function initContactForm() {
     button.disabled = true;
 
     try {
-      if (!window.emailjs) {
-        throw new Error("EmailJS library failed to load from CDN");
-      }
-
       if (!hasConfig) {
         throw new Error("EmailJS configuration missing in form data attributes");
-      }
-
-      if (!window.__aw4uEmailJsInitialized) {
-        window.emailjs.init({ publicKey });
-        window.__aw4uEmailJsInitialized = true;
       }
 
       const name = document.getElementById("name")?.value?.trim() || "";
@@ -420,27 +411,42 @@ function initContactForm() {
       const service = document.getElementById("service")?.value?.trim() || "General";
       const message = document.getElementById("message")?.value?.trim() || "";
 
-      await window.emailjs.send(serviceId, templateId, {
-        name,
-        email,
-        service,
-        from_name: name,
-        from_email: email,
-        service_name: service,
-        message,
-        reply_to: email,
-        agency_name: "Agence Web4u",
-        phone: "0694360941",
-        to_email: "abderrahmanelfajri@gmail.com"
+      const payload = {
+        service_id: serviceId,
+        template_id: templateId,
+        user_id: publicKey,
+        template_params: {
+          name,
+          email,
+          service,
+          from_name: name,
+          from_email: email,
+          service_name: service,
+          message,
+          reply_to: email,
+          agency_name: "Agence Web4u",
+          phone: "0694360941",
+          to_email: "abderrahmanelfajri@gmail.com"
+        }
+      };
+
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
       });
+
+      if (!response.ok) {
+        const details = await response.text();
+        throw new Error(`EmailJS API error ${response.status}: ${details || "No details"}`);
+      }
 
       button.textContent = dict["form.success"] || "Message sent successfully";
       contactForm.reset();
     } catch (error) {
       console.error("EmailJS send error:", error);
-      if (error?.status || error?.text) {
-        console.error(`EmailJS details: status=${error.status || "n/a"}, text=${error.text || "n/a"}`);
-      }
       button.textContent = dict["form.error"] || "Failed to send. Try again.";
     }
 
@@ -451,28 +457,4 @@ function initContactForm() {
   });
 }
 
-function waitForEmailJS() {
-  if (window.emailjs) {
-    console.log("EmailJS loaded successfully");
-    initContactForm();
-    return;
-  }
-
-  const maxRetries = 50;
-  let retries = 0;
-
-  const checkInterval = setInterval(() => {
-    retries++;
-    if (window.emailjs) {
-      console.log("EmailJS library detected");
-      clearInterval(checkInterval);
-      initContactForm();
-    } else if (retries >= maxRetries) {
-      console.warn("EmailJS library did not load within timeout. Check your internet connection or CDN status.");
-      clearInterval(checkInterval);
-      initContactForm();
-    }
-  }, 100);
-}
-
-waitForEmailJS();
+initContactForm();
