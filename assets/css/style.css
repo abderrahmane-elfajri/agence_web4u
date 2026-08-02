@@ -3388,7 +3388,7 @@ h3,
 @media (min-width: 901px) and (max-height: 760px) {
   .home-page .hero {
     min-height: calc(100svh - var(--nav-height));
-    padding: clamp(2rem, 4.5vh, 3rem) 0 clamp(2.25rem, 5vh, 3.25rem);
+    padding: 0.75rem 0 1rem;
   }
 
   .home-page .hero-grid {
