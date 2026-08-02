@@ -51,11 +51,12 @@
         const response = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
-          headers: { Accept: 'application/json' }
+          headers: { Accept: 'text/html,application/xhtml+xml' },
+          redirect: 'manual'
         });
-        const result = await response.json().catch(() => ({}));
 
-        if (!response.ok || result.success === false || result.success === 'false') {
+        const redirectedAfterSubmission = response.type === 'opaqueredirect' || (response.status >= 300 && response.status < 400);
+        if (!response.ok && !redirectedAfterSubmission) {
           throw new Error('Form submission failed');
         }
 
