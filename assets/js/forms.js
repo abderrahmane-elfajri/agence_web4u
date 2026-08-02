@@ -48,17 +48,12 @@
       }
 
       try {
-        const response = await fetch(form.action, {
+        await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
-          headers: { Accept: 'text/html,application/xhtml+xml' },
-          redirect: 'manual'
+          mode: 'no-cors',
+          redirect: 'follow'
         });
-
-        const redirectedAfterSubmission = response.type === 'opaqueredirect' || (response.status >= 300 && response.status < 400);
-        if (!response.ok && !redirectedAfterSubmission) {
-          throw new Error('Form submission failed');
-        }
 
         window.location.href = form.dataset.success || 'thank-you.html';
       } catch (error) {
