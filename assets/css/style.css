@@ -3377,6 +3377,13 @@ h3,
   }
 }
 
+/* Decorative hero lettering must never create oversized layout boxes. */
+.blog-hero::before,
+.contact-hero::after {
+  content: none;
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *,
