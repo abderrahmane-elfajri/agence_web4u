@@ -1,392 +1,310 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agence Web4u | Premium Digital Agency</title>
-    <meta
-      name="description"
-      content="Agence Web4u builds high-converting websites for modern businesses. Premium design, strategic UX, and high-performance web development."
-    />
-    <meta
-      name="keywords"
-      content="digital agency, web design, website development, conversion optimization, Agence Web4u"
-    />
-    <meta name="author" content="Agence Web4u" />
-    <meta name="theme-color" content="#0a2540" />
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agence Web4U Morocco | Premium Web Design, SEO & Digital Marketing</title>
+  <meta name="description" content="Agence Web4U helps Moroccan businesses grow with premium website creation, SEO, social media management, Meta Ads, branding, and digital marketing services.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://agenceweb4u.ma/">
+  <link rel="alternate" hreflang="x-default" href="https://agenceweb4u.ma/">
+  <link rel="alternate" hreflang="en" href="https://agenceweb4u.ma/">
+  <link rel="alternate" hreflang="fr" href="https://agenceweb4u.ma/fr/index.html">
+  <link rel="alternate" hreflang="ar" href="https://agenceweb4u.ma/ar/index.html">
+  <meta property="og:title" content="Agence Web4U Morocco | Premium Web Design, SEO & Digital Marketing">
+  <meta property="og:description" content="Build your digital presence with premium websites, SEO, social media marketing, and ads management in Morocco.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agenceweb4u.ma/">
+  <meta property="og:image" content="https://agenceweb4u.ma/assets/images/social/social-share-web4u.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://agenceweb4u.ma/assets/images/social/social-share-web4u.jpg">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DigitalMarketingAgency",
+    "name": "Agence Web4U",
+    "url": "https://agenceweb4u.ma",
+    "email": "agenceweb4u@gmail.com",
+    "telephone": "+212694360941",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "MA",
+      "addressLocality": "Morocco"
+    },
+    "sameAs": [
+      "https://wa.me/212694360941"
+    ],
+    "areaServed": "Morocco",
+    "serviceType": [
+      "Website Creation",
+      "SEO Optimization",
+      "Social Media Management",
+      "Meta Ads",
+      "Branding",
+      "Digital Marketing"
+    ]
+  }
+  </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/brand/favicon.png">
+</head>
+<body class="home-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <meta property="og:title" content="Agence Web4u | Premium Digital Agency" />
-    <meta
-      property="og:description"
-      content="High-end websites built to convert visitors into clients. Discover premium web strategy, design, and development by Agence Web4u."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=75" />
-    <meta property="og:locale" content="en_US" />
-
-    <link rel="icon" type="image/jpeg" href="logo.jpeg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="styles.css" />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Agence Web4u",
-        "url": "#",
-        "logo": "logo.jpeg",
-        "sameAs": ["https://www.instagram.com/agence_web4u"],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+212694360941",
-          "contactType": "customer service"
-        }
-      }
-    </script>
-  </head>
-  <body>
-    <header class="site-header" id="home">
-      <nav class="nav container">
-        <a href="#home" class="brand" aria-label="Agence Web4u home">
-          <img src="logo.jpeg" alt="Agence Web4u logo" width="42" height="42" />
-          <span>Agence Web4u</span>
-        </a>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#services" class="nav-anchor" data-i18n="nav.services">Services</a></li>
-          <li><a href="#portfolio" class="nav-anchor" data-i18n="nav.portfolio">Portfolio</a></li>
-          <li><a href="#about" class="nav-anchor" data-i18n="nav.about">About</a></li>
-          <li><a href="#contact" class="nav-anchor" data-i18n="nav.contact">Contact</a></li>
-          <li>
-            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-              <i class="fa-solid fa-moon"></i>
-            </button>
-          </li>
-          <li>
-            <select id="languageSelect" class="lang-select" aria-label="Choose language">
-              <option value="en">English</option>
-              <option value="fr">Francais</option>
-              <option value="ar">Arabic</option>
-            </select>
-          </li>
-          <li><a href="#contact" class="btn btn-nav" data-i18n="cta.getStarted">Get Started</a></li>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo" aria-label="Agence Web4U Home"><span class="logo-mark" aria-hidden="true"></span><span>AGENCE WEB4U</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a data-page="index.html" href="index.html">Home</a></li>
+          <li><a data-page="about.html" href="about.html">About</a></li>
+          <li><a data-page="services.html" href="services.html">Services</a></li>
+          <li><a data-page="portfolio.html" href="portfolio.html">Portfolio</a></li>
+          <li><a data-page="blog.html" href="blog.html">Blog</a></li>
+          <li><a data-page="contact.html" href="contact.html">Contact</a></li>
         </ul>
       </nav>
-    </header>
+      <div class="nav-extra"><div class="lang-switcher" aria-label="Language switcher"><a class="is-active" aria-current="true" href="index.html" lang="en">EN</a><a href="fr/index.html" lang="fr">FR</a><a href="ar/index.html" lang="ar">AR</a></div><a href="contact.html" class="btn btn-primary nav-cta">Get a Free Quote</a></div>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero section-pad">
-        <div class="hero-bg-shape hero-shape-a" aria-hidden="true"></div>
-        <div class="hero-bg-shape hero-shape-b" aria-hidden="true"></div>
-        <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <p class="eyebrow" data-i18n="hero.eyebrow">Premium Digital Agency</p>
-            <h1 data-i18n="hero.title">We Build Websites That Turn Clicks Into Clients.</h1>
-            <p class="lead" data-i18n="hero.lead">
-              Agence Web4u designs high-impact digital experiences for brands that want more leads,
-              stronger authority, and measurable growth.
-            </p>
-            <div class="hero-cta">
-              <a href="#contact" class="btn btn-primary" data-i18n="cta.contactUs">Contact Us</a>
-              <a href="#portfolio" class="btn btn-outline" data-i18n="cta.viewWork">View Our Work</a>
-            </div>
-            <div class="hero-stats">
-              <article>
-                <h3>120+</h3>
-                <p data-i18n="hero.stat1">Projects Delivered</p>
-              </article>
-              <article>
-                <h3>4.9/5</h3>
-                <p data-i18n="hero.stat2">Client Satisfaction</p>
-              </article>
-              <article>
-                <h3>32%</h3>
-                <p data-i18n="hero.stat3">Avg. Conversion Lift</p>
-              </article>
-            </div>
+  <main id="main-content">
+    <section class="hero">
+      <div class="floating-orb orb-1"></div>
+      <div class="floating-orb orb-2"></div>
+      <div class="container hero-grid">
+        <div>
+          <span class="badge" data-aos="fade-up">Morocco's Premium Digital Partner</span>
+          <h1 data-hero-anim="title">BOOST YOUR <span class="text-gold">DIGITAL PRESENCE</span> WITH <span class="text-gold">WEB4U</span></h1>
+          <p data-hero-anim="subtitle">Premium websites, SEO, social media and ad campaigns tailored to grow your business in Morocco.</p>
+          <div class="hero-actions" data-hero-anim="actions">
+            <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
+            <a href="https://wa.me/212694360941" target="_blank" rel="noopener" class="btn btn-outline">Contact on WhatsApp</a>
           </div>
 
-          <div class="hero-visual reveal" aria-label="Website mockups preview">
-            <img
-              src="https://images.pexels.com/photos/811587/pexels-photo-811587.jpeg"
-              alt="Laptop mockup displaying a business website"
-              loading="eager"
-              width="1200"
-              height="800"
-            />
-            <img
-              class="floating-device"
-              src="https://images.pexels.com/photos/39559/ipad-mockup-apple-business-39559.jpeg"
-              alt="Phone mockup with modern website interface"
-              loading="lazy"
-              decoding="async"
-              width="700"
-              height="900"
-            />
+          <div class="hero-features" data-aos="fade-up">
+            <div class="feature"><span class="icon-pill">UX</span><div><strong>Websites</strong><div class="small">High-performance</div></div></div>
+            <div class="feature"><span class="icon-pill">SEO</span><div><strong>SEO</strong><div class="small">Optimized</div></div></div>
+            <div class="feature"><span class="icon-pill">SM</span><div><strong>Social</strong><div class="small">Impactful</div></div></div>
+            <div class="feature"><span class="icon-pill">AD</span><div><strong>Ads</strong><div class="small">ROI-focused</div></div></div>
           </div>
         </div>
-      </section>
-
-      <section class="trust-band">
-        <div class="container trust-grid reveal">
-          <span data-i18n="trust.title">Trusted by growth-focused brands</span>
-          <p data-i18n="trust.text">Strategy-driven UX. Conversion-focused design. Lightning-fast development.</p>
-          <a href="#contact" class="btn btn-primary btn-small" data-i18n="cta.getStarted">Get Started</a>
+        <div class="hero-media" data-aos="zoom-in-left">
+          <article class="hero-card">
+            <img decoding="async" src="assets/images/hero/hero-web4u-premium.webp" width="1600" height="1200" alt="Premium digital marketing dashboard preview by Agence Web4U" loading="eager" fetchpriority="high">
+          </article>
+          <div class="floating-chip">Trusted by Moroccan Brands</div>
         </div>
-      </section>
-
-      <section class="services section-pad" id="services">
-        <div class="container">
-          <div class="section-head reveal">
-            <p class="eyebrow" data-i18n="services.eyebrow">Services</p>
-            <h2 data-i18n="services.title">Growth Services For Serious Brands</h2>
-            <p data-i18n="services.lead">
-              Our team combines social media execution, website building, growth strategy, and paid
-              ads management to generate predictable results.
-            </p>
-          </div>
-
-          <div class="service-proof reveal">
-            <article>
-              <strong>4</strong>
-              <span>Core Services</span>
-            </article>
-            <article>
-              <strong>360</strong>
-              <span>Growth Coverage</span>
-            </article>
-            <article>
-              <strong>ROI</strong>
-              <span>Performance Focus</span>
-            </article>
-          </div>
-
-          <div class="cards-grid">
-            <article class="service-card reveal">
-              <div class="icon-wrap"><i class="fa-solid fa-hashtag"></i></div>
-              <h3 data-i18n="services.design.title">SMM Management</h3>
-              <p data-i18n="services.design.desc">Strategic social media management that grows your audience and turns attention into leads.</p>
-              <div class="service-tags">
-                <span>Content Plan</span>
-                <span>Creative</span>
-                <span>Community</span>
-              </div>
-              <a href="service-design.html" class="text-link" data-i18n="cta.details">Details</a>
-            </article>
-
-            <article class="service-card reveal">
-              <div class="icon-wrap"><i class="fa-solid fa-bolt"></i></div>
-              <h3 data-i18n="services.dev.title">Build Website</h3>
-              <p data-i18n="services.dev.desc">Professional websites designed and built for credibility, speed, and conversion.</p>
-              <div class="service-tags">
-                <span>UX/UI</span>
-                <span>Responsive</span>
-                <span>Fast Load</span>
-              </div>
-              <a href="service-development.html" class="text-link" data-i18n="cta.details">Details</a>
-            </article>
-
-            <article class="service-card reveal">
-              <div class="icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
-              <h3 data-i18n="services.conv.title">Marketing Strategy</h3>
-              <p data-i18n="services.conv.desc">Data-backed strategy to position your offer and scale customer acquisition.</p>
-              <div class="service-tags">
-                <span>Positioning</span>
-                <span>Funnel</span>
-                <span>Roadmap</span>
-              </div>
-              <a href="service-conversion.html" class="text-link" data-i18n="cta.details">Details</a>
-            </article>
-
-            <article class="service-card reveal">
-              <div class="icon-wrap"><i class="fa-solid fa-bullhorn"></i></div>
-              <h3 data-i18n="services.seo.title">Ads Management</h3>
-              <p data-i18n="services.seo.desc">End-to-end paid ads management focused on ROI, quality leads, and lower acquisition cost.</p>
-              <div class="service-tags">
-                <span>Meta Ads</span>
-                <span>Google Ads</span>
-                <span>Optimization</span>
-              </div>
-              <a href="service-seo.html" class="text-link" data-i18n="cta.details">Details</a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="portfolio section-pad" id="portfolio">
-        <div class="container">
-          <div class="section-head reveal">
-            <p class="eyebrow" data-i18n="portfolio.eyebrow">Portfolio</p>
-            <h2 data-i18n="portfolio.title">Recent Client Projects</h2>
-            <p data-i18n="portfolio.lead">Real-style, premium projects built with business goals at the center.</p>
-          </div>
-
-          <div class="portfolio-grid">
-            <article class="project-card reveal">
-              <img
-                src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1200&q=75"
-                alt="Dashboard website project mockup"
-                loading="lazy"
-                decoding="async"
-                width="1200"
-                height="850"
-              />
-              <div class="project-overlay">
-                <h3>Fintech Pro</h3>
-                <p data-i18n="portfolio.card1">Conversion-focused landing page redesign with +41% lead uplift.</p>
-                <a href="#contact" class="btn btn-outline btn-small" data-i18n="cta.contactUs">Contact Us</a>
-              </div>
-            </article>
-
-            <article class="project-card reveal">
-              <img
-                src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1200&q=75"
-                alt="Team reviewing website UX strategy"
-                loading="lazy"
-                decoding="async"
-                width="1200"
-                height="850"
-              />
-              <div class="project-overlay">
-                <h3>LegalFlow</h3>
-                <p data-i18n="portfolio.card2">Premium corporate website that improved conversion quality and trust.</p>
-                <a href="#contact" class="btn btn-outline btn-small" data-i18n="cta.contactUs">Contact Us</a>
-              </div>
-            </article>
-
-            <article class="project-card reveal">
-              <img
-                src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=75"
-                alt="Developer creating e-commerce website"
-                loading="lazy"
-                decoding="async"
-                width="1200"
-                height="850"
-              />
-              <div class="project-overlay">
-                <h3>Maison Luxe</h3>
-                <p data-i18n="portfolio.card3">Elegant e-commerce experience optimized for speed and sales performance.</p>
-                <a href="#contact" class="btn btn-outline btn-small" data-i18n="cta.getStarted">Get Started</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="about section-pad" id="about">
-        <div class="container about-grid">
-          <div class="about-image reveal">
-            <img
-              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=75"
-              alt="Digital agency team in strategy meeting"
-              loading="lazy"
-              decoding="async"
-              width="1200"
-              height="900"
-            />
-          </div>
-
-          <div class="about-copy reveal">
-            <p class="eyebrow" data-i18n="about.eyebrow">About Agence Web4u</p>
-            <h2 data-i18n="about.title">Your Growth Partner For Premium Web Experiences</h2>
-            <p data-i18n="about.lead">
-              We are a digital agency focused on helping businesses stand out online with websites
-              that look exceptional and perform even better.
-            </p>
-            <ul class="about-points">
-              <li><i class="fa-solid fa-circle-check"></i><span data-i18n="about.point1">Strategic design built for business goals</span></li>
-              <li><i class="fa-solid fa-circle-check"></i><span data-i18n="about.point2">Fast, SEO-ready, mobile-first development</span></li>
-              <li><i class="fa-solid fa-circle-check"></i><span data-i18n="about.point3">Clear communication and on-time delivery</span></li>
-            </ul>
-            <a href="#contact" class="btn btn-primary" data-i18n="cta.contactUs">Contact Us</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="contact section-pad" id="contact">
-        <div class="container contact-grid">
-          <div class="contact-copy reveal">
-            <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
-            <h2 data-i18n="contact.title">Ready To Launch Your Next Website?</h2>
-            <p data-i18n="contact.lead">
-              Tell us about your project and we will send a tailored proposal focused on your goals.
-            </p>
-
-            <div class="contact-list">
-              <p><i class="fa-solid fa-phone"></i> 0694360941</p>
-              <p><i class="fa-solid fa-envelope"></i> <a href="mailto:abderrahmanelfajri@gmail.com">abderrahmanelfajri@gmail.com</a></p>
-              <p><i class="fa-brands fa-instagram"></i> @agence_web4u</p>
-              <p><i class="fa-brands fa-whatsapp"></i><span data-i18n="contact.whatsappInfo">WhatsApp available for quick replies</span></p>
-            </div>
-
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="https://wa.me/212694360941" target="_blank" rel="noopener" data-i18n="cta.whatsapp">Chat On WhatsApp</a>
-              <a class="btn btn-outline" href="tel:0694360941" data-i18n="cta.callNow">Call Now</a>
-            </div>
-          </div>
-
-          <form
-            class="contact-form reveal"
-            aria-label="Contact form"
-            data-emailjs-service="web4u_agency"
-            data-emailjs-template="template_1seqqh9"
-            data-emailjs-public="etq83sjSas8-h9bw3"
-          >
-            <label for="name" data-i18n="form.name">Full Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" data-i18n-placeholder="form.namePh" required />
-
-            <label for="email" data-i18n="form.email">Email Address</label>
-            <input id="email" name="email" type="email" placeholder="your@email.com" data-i18n-placeholder="form.emailPh" required />
-
-            <label for="service" data-i18n="form.service">Service Needed</label>
-            <select id="service" name="service" required>
-              <option value="" data-i18n="form.servicePlaceholder">Select a service</option>
-              <option data-i18n="services.design.title">SMM Management</option>
-              <option data-i18n="services.dev.title">Build Website</option>
-              <option data-i18n="services.conv.title">Marketing Strategy</option>
-              <option data-i18n="services.seo.title">Ads Management</option>
-            </select>
-
-            <label for="message" data-i18n="form.message">Project Details</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us about your goals" data-i18n-placeholder="form.messagePh" required></textarea>
-
-            <button type="submit" class="btn btn-primary" data-i18n="cta.getStarted">Get Started</button>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <p><span data-i18n="footer.rightsPrefix">©</span> <span id="year"></span> Agence Web4u. <span data-i18n="footer.rights">All rights reserved.</span></p>
-        <a href="#home" data-i18n="footer.backTop">Back to top</a>
       </div>
-    </footer>
+    </section>
 
-    <a
-      href="https://wa.me/212694360941"
-      class="whatsapp-float"
-      target="_blank"
-      rel="noopener"
-      aria-label="Chat on WhatsApp"
-    >
-      <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <section class="trust-strip" aria-label="What you can expect">
+      <div class="container trust-grid">
+        <div><strong>3 languages</strong><span>English · French · Arabic</span></div>
+        <div><strong>Mobile first</strong><span>Fast on every screen</span></div>
+        <div><strong>SEO ready</strong><span>Built to be discovered</span></div>
+        <div><strong>Growth focused</strong><span>Clear conversion paths</span></div>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
-  </body>
+    <section class="section" id="services">
+      <div class="container">
+        <span class="badge" data-aos="fade-up">Our Expertise</span>
+        <h2 class="section-title" data-aos="fade-up">Premium Digital Services Designed to Convert</h2>
+        <p class="section-subtitle" data-aos="fade-up">From strategic branding to lead-focused ad campaigns, every solution is crafted to drive qualified traffic and sales for your business.</p>
+        <div class="grid cards-3">
+          <article class="glass-card" data-aos="fade-up">
+            <div class="icon-pill">01</div>
+            <h3>Website Creation</h3>
+            <p>High-performance websites with premium UI/UX and conversion-first architecture.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="icon-pill">02</div>
+            <h3>SEO Optimization</h3>
+            <p>Technical and content SEO strategies to rank your business on Google in Morocco.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="130">
+            <div class="icon-pill">03</div>
+            <h3>Social Media Management</h3>
+            <p>Content planning, visual production, and community engagement for brand growth.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up">
+            <div class="icon-pill">04</div>
+            <h3>Meta Ads</h3>
+            <p>Performance-driven Facebook and Instagram campaigns with clear ROI tracking.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="icon-pill">05</div>
+            <h3>Branding</h3>
+            <p>Powerful identity systems that communicate your value and build trust instantly.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="130">
+            <div class="icon-pill">06</div>
+            <h3>Digital Marketing</h3>
+            <p>Integrated growth plans combining content, paid ads, SEO, and CRO techniques.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why-us">
+      <div class="container grid cards-2">
+        <div>
+          <span class="badge" data-aos="fade-right">Why Choose Us</span>
+          <h2 class="section-title" data-aos="fade-right">A Boutique Agency Experience With International Quality</h2>
+          <ul class="list-check" data-aos="fade-right" data-aos-delay="80">
+            <li>Modern Design with premium user experience</li>
+            <li>Fast Delivery with transparent project workflow</li>
+            <li>SEO Optimized structure from day one</li>
+            <li>Mobile Responsive across all devices</li>
+            <li>Marketing Focused pages that generate leads</li>
+          </ul>
+        </div>
+        <article class="glass-card" data-aos="fade-left">
+          <h3>Performance and Trust at Scale</h3>
+          <p>We combine creativity with data. Your website is built to look premium, load fast, and convert visitors into qualified prospects through strategic calls-to-action and frictionless contact flows.</p>
+          <p class="small mt-1">Language-ready architecture: Arabic, French, and English support can be deployed in the next phase.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="container">
+        <span class="badge" data-aos="fade-up">Portfolio Showcase</span>
+        <h2 class="section-title" data-aos="fade-up">Recent Digital Projects</h2>
+        <div class="grid cards-3">
+          <article class="glass-card portfolio-card" data-aos="fade-up">
+            <div class="card-media">
+              <img decoding="async" src="assets/images/portfolio/portfolio-website.webp" width="1200" height="750" alt="Corporate website redesign project" loading="lazy">
+            </div>
+            <h3>Corporate Website Redesign</h3>
+            <p class="meta">UI/UX, development, technical SEO</p>
+          </article>
+          <article class="glass-card portfolio-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="card-media">
+              <img decoding="async" src="assets/images/portfolio/portfolio-landing-page.webp" width="1200" height="750" alt="Lead generation landing pages project" loading="lazy">
+            </div>
+            <h3>Lead-Gen Funnel for Local Brand</h3>
+            <p class="meta">Landing pages, CRO, Meta Ads integration</p>
+          </article>
+          <article class="glass-card portfolio-card" data-aos="fade-up" data-aos-delay="120">
+            <div class="card-media">
+              <img decoding="async" src="assets/images/portfolio/portfolio-seo.webp" width="1200" height="750" alt="SEO growth analytics dashboard" loading="lazy">
+            </div>
+            <h3>SEO Growth Campaign</h3>
+            <p class="meta">On-page SEO, content strategy, analytics</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="badge" data-aos="fade-up">Our Process</span>
+        <h2 class="section-title" data-aos="fade-up">A Proven Growth Framework</h2>
+        <div class="grid cards-3 process">
+          <article class="glass-card" data-aos="fade-up"><h3>Strategy</h3><p>Business analysis, market research, offer positioning.</p></article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="50"><h3>Design</h3><p>Premium layouts, brand direction, and UX journeys.</p></article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="100"><h3>Development</h3><p>Optimized front-end build with SEO-friendly structure.</p></article>
+          <article class="glass-card" data-aos="fade-up"><h3>Launch</h3><p>Quality assurance, speed checks, tracking setup.</p></article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="50"><h3>Growth</h3><p>Campaign execution, content optimization, reporting.</p></article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="100"><h3>Scale</h3><p>Continuous conversion improvements for long-term ROI.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="badge" data-aos="fade-up">How We Work</span>
+        <h2 class="section-title" data-aos="fade-up">Standards Behind Every Engagement</h2>
+        <div class="grid cards-3">
+          <article class="glass-card" data-aos="fade-up">
+            <p>Clear scope, milestones, and ownership before production begins.</p>
+            <p class="meta">Transparent project management</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="80">
+            <p>Responsive layouts, accessibility checks, speed review, and conversion-focused QA before launch.</p>
+            <p class="meta">Quality assurance</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="130">
+            <p>Reporting focuses on measurable business signals—not vanity metrics or unsupported promises.</p>
+            <p class="meta">Evidence-based optimization</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-insights">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <div><span class="eyebrow">Web4U Insights</span><h2 class="section-title">Useful ideas for better digital decisions.</h2></div>
+          <div class="insights-intro"><p>Clear guidance on websites, SEO and content for a stronger digital presence.</p><a href="blog.html" class="text-link">View all insights <span aria-hidden="true">→</span></a></div>
+        </div>
+        <div class="journal-grid">
+          <article class="journal-card" data-aos="fade-up"><a class="journal-media" href="insights/website-conversion.html"><img decoding="async" src="assets/images/blog/blog-web-design.webp" width="1200" height="750" alt="Website strategy" loading="lazy"></a><div class="journal-body"><div class="article-meta"><span>Web strategy</span><span>01</span></div><h3>How to build a website that converts in 2026</h3><p>The decisions that turn attention into qualified enquiries.</p><a href="insights/website-conversion.html" class="text-link">Explore the topic <span aria-hidden="true">→</span></a></div></article>
+          <article class="journal-card" data-aos="fade-up" data-aos-delay="80"><a class="journal-media" href="blog.html"><img decoding="async" src="assets/images/blog/blog-local-seo.webp" width="1200" height="750" alt="Local SEO strategy in Morocco" loading="lazy"></a><div class="journal-body"><div class="article-meta"><span>Local SEO</span><span>02</span></div><h3>Become visible to customers searching for you</h3><p>Technical and local foundations that improve your presence on Google.</p><a href="blog.html" class="text-link">Explore the topic <span aria-hidden="true">→</span></a></div></article>
+          <article class="journal-card" data-aos="fade-up" data-aos-delay="120"><a class="journal-media" href="blog.html"><img decoding="async" src="assets/images/blog/blog-social-media.webp" width="1200" height="750" alt="Social content system" loading="lazy"></a><div class="journal-body"><div class="article-meta"><span>Content</span><span>03</span></div><h3>Build a content system that earns trust</h3><p>A consistent method for publishing with purpose and creating demand.</p><a href="blog.html" class="text-link">Explore the topic <span aria-hidden="true">→</span></a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner" data-aos="zoom-in-up">
+          <h2 class="section-title">Ready to Scale Your Business Online?</h2>
+          <p class="section-subtitle">Let us design a premium growth system around your brand. Start with a free consultation and custom action plan.</p>
+          <a class="btn btn-primary" href="contact.html">Get a Free Quote</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h2>AGENCE WEB4U</h2>
+        <p class="meta">Premium digital agency in Morocco specialized in websites, SEO, social media, Meta Ads, branding, and digital marketing.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+212694360941">+212 694-360941</a></li>
+          <li><a href="mailto:agenceweb4u@gmail.com">agenceweb4u@gmail.com</a></li>
+          <li><a href="https://agenceweb4u.ma">agenceweb4u.ma</a></li>
+          <li>Morocco</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-legal"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+</footer>
+
+  <a href="https://wa.me/212694360941" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact on WhatsApp">
+    <svg width="27" height="27" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.01 0C5.38 0 0 5.37 0 12a11.9 11.9 0 0 0 1.63 6.02L0 24l6.15-1.61a12.02 12.02 0 0 0 5.86 1.5h.01C18.62 23.89 24 18.52 24 11.9c0-3.18-1.24-6.17-3.48-8.42ZM12.02 21.9h-.01a9.97 9.97 0 0 1-5.09-1.4l-.36-.21-3.65.96.97-3.56-.23-.37A9.9 9.9 0 0 1 2.1 12C2.1 6.54 6.55 2.1 12.02 2.1a9.87 9.87 0 0 1 7.02 2.91A9.85 9.85 0 0 1 21.9 12c0 5.46-4.44 9.9-9.88 9.9Zm5.43-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.6.14-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.48s1.08 2.88 1.23 3.08c.15.2 2.13 3.26 5.16 4.57.72.31 1.29.5 1.73.63.73.23 1.4.2 1.93.12.59-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
+  </a>
+
+  <div class="sticky-cta" aria-label="Quick lead actions">
+    <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
+    <a href="https://wa.me/212694360941" target="_blank" rel="noopener" class="btn btn-outline">Contact on WhatsApp</a>
+  </div>
+
+  
+  
+  <script src="assets/js/main.js" defer></script>
+</body>
 </html>

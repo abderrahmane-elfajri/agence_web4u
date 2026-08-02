@@ -1,0 +1,6 @@
+node_modules/
+dist/
+WORK/
+*.zip
+.DS_Store
+Thumbs.db
