@@ -118,31 +118,65 @@
       form.prepend(packNotice);
     }
 
-    form.addEventListener('submit', (event) => {
-      if (window.location.protocol !== 'file:') {
-        if (submitButton) {
-          submitButton.disabled = true;
-          submitButton.setAttribute('aria-busy', 'true');
-          submitButton.textContent = submittingLabels[language] || submittingLabels.en;
-        }
-        return;
-      }
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const messages = {
+
+      const localMessages = {
         en: 'The form cannot be tested from a local HTML file. Run “npm run dev” and open the HTTP address shown in the terminal.',
         fr: 'Le formulaire ne peut pas être testé depuis un fichier HTML local. Lancez « npm run dev » puis ouvrez l’adresse HTTP affichée dans le terminal.',
         ar: 'لا يمكن اختبار النموذج من ملف HTML محلي. شغّل « npm run dev » ثم افتح عنوان HTTP الظاهر في الطرفية.'
       };
-      let status = form.querySelector('.form-status');
-      if (!status) {
-        status = document.createElement('p');
-        status.className = 'form-status is-error';
-        status.setAttribute('role', 'alert');
-        status.setAttribute('tabindex', '-1');
-        form.append(status);
+      const errorMessages = {
+        en: 'Your message could not be sent. Please try again or contact us on WhatsApp.',
+        fr: 'Votre message n’a pas pu être envoyé. Réessayez ou contactez-nous sur WhatsApp.',
+        ar: 'تعذر إرسال رسالتك. حاول مرة أخرى أو تواصل معنا عبر واتساب.'
+      };
+      const showError = (message) => {
+        let status = form.querySelector('.form-status');
+        if (!status) {
+          status = document.createElement('p');
+          status.className = 'form-status is-error';
+          status.setAttribute('role', 'alert');
+          status.setAttribute('tabindex', '-1');
+          form.append(status);
+        }
+        status.textContent = message;
+        status.focus();
+      };
+
+      if (window.location.protocol === 'file:') {
+        showError(localMessages[language] || localMessages.en);
+        return;
       }
-      status.textContent = messages[document.documentElement.lang] || messages.en;
-      status.focus();
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.setAttribute('aria-busy', 'true');
+        submitButton.textContent = submittingLabels[language] || submittingLabels.en;
+      }
+
+      try {
+        const endpoint = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || result.success === false) {
+          throw new Error('FormSubmit rejected the request');
+        }
+
+        window.location.assign('thank-you.html');
+      } catch (error) {
+        showError(errorMessages[language] || errorMessages.en);
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.removeAttribute('aria-busy');
+          submitButton.textContent = originalLabel;
+        }
+      }
     });
 
     window.addEventListener('pageshow', () => {
