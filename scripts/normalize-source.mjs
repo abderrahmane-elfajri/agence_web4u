@@ -171,10 +171,10 @@ for (const path of htmlFiles) {
   html = html.replace('name="_captcha" value="false"', 'name="_captcha" value="true"');
   if (html.includes('<form class="form-grid"') && !html.includes('name="_next"')) {
     const thankYouUrl = locale === 'fr'
-      ? 'https://agenceweb4u.ma/fr/thank-you.html'
+      ? 'https://abderrahmane-elfajri.github.io/agence_web4u/fr/thank-you.html'
       : locale === 'ar'
-        ? 'https://agenceweb4u.ma/ar/thank-you.html'
-        : 'https://agenceweb4u.ma/thank-you.html';
+        ? 'https://abderrahmane-elfajri.github.io/agence_web4u/ar/thank-you.html'
+        : 'https://abderrahmane-elfajri.github.io/agence_web4u/thank-you.html';
     html = html.replace(/(<input type="hidden" name="_template" value="table">)/, `$1<input type="hidden" name="_next" value="${thankYouUrl}">`);
   }
   if (html.includes('<form class="form-grid"') && !html.includes('name="_url"')) {
