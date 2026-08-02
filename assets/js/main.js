@@ -89,7 +89,7 @@
     }
   });
 
-  document.querySelectorAll('form[action*="formsubmit.co"]').forEach((form) => {
+  document.querySelectorAll('form[action*="formsubmit.co"]:not([data-async-form])').forEach((form) => {
     const submitButton = form.querySelector('button[type="submit"]');
     const originalLabel = submitButton?.textContent;
     const language = document.documentElement.lang;
