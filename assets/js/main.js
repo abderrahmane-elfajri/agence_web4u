@@ -1,7 +1,69 @@
 (function () {
+  const themeKey = 'agence-web4u-theme';
+  const root = document.documentElement;
+  const language = (root.lang || 'en').toLowerCase().split('-')[0];
+  const themeLabels = {
+    en: { light: 'Switch to white mode', dark: 'Switch to dark mode' },
+    fr: { light: 'Passer en mode clair', dark: 'Passer en mode sombre' },
+    ar: { light: 'التبديل إلى الوضع الفاتح', dark: 'التبديل إلى الوضع الداكن' }
+  };
+
+  const readTheme = () => {
+    try {
+      const storedTheme = localStorage.getItem(themeKey);
+      if (storedTheme === 'light' || storedTheme === 'dark') return storedTheme;
+    } catch {
+      return 'light';
+    }
+    return 'light';
+  };
+
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+    try {
+      localStorage.setItem(themeKey, theme);
+    } catch {
+      /* ignore storage errors */
+    }
+  };
+
+  const getThemeLabels = () => themeLabels[language] || themeLabels.en;
+
+  applyTheme(readTheme());
+
   const header = document.querySelector('.site-header');
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const navExtra = document.querySelector('.nav-extra');
+  const navCta = navExtra?.querySelector('.nav-cta');
+
+  if (navExtra) {
+    const themeButton = document.createElement('button');
+    themeButton.type = 'button';
+    themeButton.className = 'theme-toggle';
+
+    const updateThemeButton = () => {
+      const labels = getThemeLabels();
+      const isLight = root.dataset.theme === 'light';
+      themeButton.innerHTML = isLight
+        ? '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a9 9 0 1 0 9.8 9.8Z"/></svg>'
+        : '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1.9a1 1 0 0 1 1 1V5a1 1 0 1 1-2 0V2.9a1 1 0 0 1 1-1Zm0 15.1a4 4 0 1 1 0-8 4 4 0 0 1 0 8ZM4.2 4.2a1 1 0 0 1 1.4 0l1.5 1.5A1 1 0 1 1 5.7 7.1L4.2 5.6a1 1 0 0 1 0-1.4Zm14.7 14.7a1 1 0 0 1 1.4 0l1.5 1.5a1 1 0 1 1-1.4 1.4l-1.5-1.5a1 1 0 0 1 0-1.4ZM1.9 12a1 1 0 0 1 1-1H5a1 1 0 1 1 0 2H2.9a1 1 0 0 1-1-1Zm15.1 0a1 1 0 0 1 1-1H20a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1Zm-11.8 8.5a1 1 0 0 1 0-1.4l1.5-1.5a1 1 0 1 1 1.4 1.4L7.1 20a1 1 0 0 1-1.4 0Zm14.7-14.7a1 1 0 0 1 0-1.4l1.5-1.5a1 1 0 1 1 1.4 1.4l-1.5 1.5a1 1 0 0 1-1.4 0Z"/></svg>';
+      themeButton.setAttribute('aria-label', isLight ? labels.dark : labels.light);
+      themeButton.setAttribute('title', isLight ? labels.dark : labels.light);
+      themeButton.setAttribute('aria-pressed', String(isLight));
+    };
+
+    themeButton.addEventListener('click', () => {
+      const nextTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
+      applyTheme(nextTheme);
+      updateThemeButton();
+    });
+
+    updateThemeButton();
+    if (navCta) navExtra.insertBefore(themeButton, navCta);
+    else navExtra.append(themeButton);
+  }
 
   if (header) {
     const onScroll = () => {
@@ -89,7 +151,7 @@
     }
   });
 
-  document.querySelectorAll('form[action*="formsubmit.co"]:not([data-async-form])').forEach((form) => {
+  document.querySelectorAll('form[action*="formsubmit.co"]').forEach((form) => {
     const submitButton = form.querySelector('button[type="submit"]');
     const originalLabel = submitButton?.textContent;
     const language = document.documentElement.lang;
@@ -118,65 +180,31 @@
       form.prepend(packNotice);
     }
 
-    form.addEventListener('submit', async (event) => {
+    form.addEventListener('submit', (event) => {
+      if (window.location.protocol !== 'file:') {
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.setAttribute('aria-busy', 'true');
+          submitButton.textContent = submittingLabels[language] || submittingLabels.en;
+        }
+        return;
+      }
       event.preventDefault();
-
-      const localMessages = {
+      const messages = {
         en: 'The form cannot be tested from a local HTML file. Run “npm run dev” and open the HTTP address shown in the terminal.',
         fr: 'Le formulaire ne peut pas être testé depuis un fichier HTML local. Lancez « npm run dev » puis ouvrez l’adresse HTTP affichée dans le terminal.',
         ar: 'لا يمكن اختبار النموذج من ملف HTML محلي. شغّل « npm run dev » ثم افتح عنوان HTTP الظاهر في الطرفية.'
       };
-      const errorMessages = {
-        en: 'Your message could not be sent. Please try again or contact us on WhatsApp.',
-        fr: 'Votre message n’a pas pu être envoyé. Réessayez ou contactez-nous sur WhatsApp.',
-        ar: 'تعذر إرسال رسالتك. حاول مرة أخرى أو تواصل معنا عبر واتساب.'
-      };
-      const showError = (message) => {
-        let status = form.querySelector('.form-status');
-        if (!status) {
-          status = document.createElement('p');
-          status.className = 'form-status is-error';
-          status.setAttribute('role', 'alert');
-          status.setAttribute('tabindex', '-1');
-          form.append(status);
-        }
-        status.textContent = message;
-        status.focus();
-      };
-
-      if (window.location.protocol === 'file:') {
-        showError(localMessages[language] || localMessages.en);
-        return;
+      let status = form.querySelector('.form-status');
+      if (!status) {
+        status = document.createElement('p');
+        status.className = 'form-status is-error';
+        status.setAttribute('role', 'alert');
+        status.setAttribute('tabindex', '-1');
+        form.append(status);
       }
-
-      if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.setAttribute('aria-busy', 'true');
-        submitButton.textContent = submittingLabels[language] || submittingLabels.en;
-      }
-
-      try {
-        const endpoint = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' }
-        });
-        const result = await response.json().catch(() => ({}));
-
-        if (!response.ok || result.success === false) {
-          throw new Error('FormSubmit rejected the request');
-        }
-
-        window.location.assign('thank-you.html');
-      } catch (error) {
-        showError(errorMessages[language] || errorMessages.en);
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.removeAttribute('aria-busy');
-          submitButton.textContent = originalLabel;
-        }
-      }
+      status.textContent = messages[document.documentElement.lang] || messages.en;
+      status.focus();
     });
 
     window.addEventListener('pageshow', () => {
