@@ -161,13 +161,70 @@
       ar: 'جارٍ الإرسال…'
     };
     const selectedPack = new URLSearchParams(window.location.search).get('pack');
+    const serviceSelect = form.querySelector('select[name="service"]');
 
-    if (selectedPack) {
+    const serviceMap = {
+      en: {
+        website: 'Website Creation',
+        allinone: 'All-in-one Growth Pack',
+        seo: 'SEO Optimization',
+        social: 'Social Media Management',
+        ads: 'Meta Ads',
+        branding: 'Branding & Design',
+        digital: 'Digital Marketing'
+      },
+      fr: {
+        website: 'Création de site web',
+        allinone: 'Pack tout-en-un',
+        seo: 'SEO',
+        social: 'Gestion des réseaux sociaux',
+        ads: 'Meta Ads',
+        branding: 'Branding & design',
+        digital: 'Marketing digital'
+      },
+      ar: {
+        website: 'تصميم المواقع',
+        allinone: 'باقة شاملة',
+        seo: 'تحسين محركات البحث',
+        social: 'إدارة السوشيال ميديا',
+        ads: 'إعلانات ميتا',
+        branding: 'الهوية البصرية',
+        digital: 'التسويق الرقمي'
+      }
+    };
+
+    const resolveService = (pack = '') => {
+      const value = pack.toLowerCase();
+      const map = serviceMap[language] || serviceMap.en;
+      if (/all[- ]?in[- ]?one|tout[- ]en[- ]un|شاملة|متكاملة|growth pack/i.test(value)) return map.allinone;
+      if (/website|site web|site|موقع|creation de site|création/i.test(value)) return map.website;
+      if (/seo|référencement|تحسين|search/i.test(value)) return map.seo;
+      if (/social|smm|réseaux|media|السوشيال|شبكات/i.test(value)) return map.social;
+      if (/ads|meta|إعلانات/i.test(value)) return map.ads;
+      if (/brand|branding|هوية/i.test(value)) return map.branding;
+      return map.digital;
+    };
+
+    const resolveServiceByKey = (serviceKey = '') => {
+      const key = serviceKey.toLowerCase();
+      const map = serviceMap[language] || serviceMap.en;
+      if (map[key]) return map[key];
+      return '';
+    };
+
+    const selectedService = new URLSearchParams(window.location.search).get('service');
+
+    if (selectedPack || selectedService) {
       const packInput = document.createElement('input');
       packInput.type = 'hidden';
       packInput.name = 'requested_package';
       packInput.value = selectedPack;
       form.prepend(packInput);
+
+      if (serviceSelect && !serviceSelect.value) {
+        const suggestedService = resolveServiceByKey(selectedService) || resolveService(selectedPack);
+        if (suggestedService) serviceSelect.value = suggestedService;
+      }
 
       const packLabels = {
         en: `Selected package: ${selectedPack}`,

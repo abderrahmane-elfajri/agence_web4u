@@ -1428,6 +1428,18 @@ html[data-theme="light"] .whatsapp-float {
   gap: 1.15rem;
 }
 
+.contact-form-card .contact-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: -0.15rem;
+}
+
+.contact-form-card .contact-actions .btn {
+  flex: 1 1 12rem;
+}
+
 .contact-form-card .field:nth-of-type(5),
 .contact-form-card .form-note,
 .contact-form-card button {
